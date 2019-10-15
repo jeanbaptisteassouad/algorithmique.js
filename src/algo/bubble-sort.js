@@ -1,8 +1,3 @@
-const root_path = '.'
-
-const Nombre = require(root_path + '/util/nombre')
-const Tableau = require(root_path + '/util/tableau')
-
 
 const bubbleSort = (array) => {
   const _moveTheBubble = (len) => {
@@ -26,11 +21,4 @@ const bubbleSort = (array) => {
   _bubbleSort(array.length)
 }
 
-
-const array = Tableau.random(100, () => Nombre.random(-100, 100))
-// const array = [3,3,5,1,0,34,23,23,-4]
-
-bubbleSort(array)
-console.log(array, Tableau.isSorted(array))
-
-
+module.exports = bubbleSort
