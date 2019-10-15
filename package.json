@@ -1,0 +1,24 @@
+{
+  "name": "algorithmique.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeanbaptisteassouad/algorithmique.js.git"
+  },
+  "author": "Jean-Baptiste Assouad <jean.baptiste@assouad.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeanbaptisteassouad/algorithmique.js/issues"
+  },
+  "homepage": "https://github.com/jeanbaptisteassouad/algorithmique.js",
+  "scripts": {
+    "start": "node ./src/main.js",
+    "test": "mocha \"./src/**/*.test.js\""
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "6.1.4"
+  }
+}
