@@ -1,10 +1,5 @@
-const root_path = '.'
 
-const Nombre = require(root_path + '/util/nombre')
-const Tableau = require(root_path + '/util/tableau')
-
-
-const bruteForceMaximumSubarraySum = (array) => {
+const bruteForce = (array) => {
   let ans = [null, null, -Infinity]
 
   const updateAns = (i, j, sum) => {
@@ -19,13 +14,13 @@ const bruteForceMaximumSubarraySum = (array) => {
       sum += array[i]
     }
 
-    for (let i = 0; i < array.length - size; i++) {
+    for (let i = 0; i <= array.length - size; i++) {
       updateAns(i, i + size - 1, sum)
       sum = sum - array[i] + array[i + size]
     }
   }
 
-  for (let size = 1; size < array.length + 1; size++) {
+  for (let size = 1; size <= array.length; size++) {
     allIntervalOfSize(size)
   }
 
@@ -37,7 +32,7 @@ const maximumSubarraySum = (array) => {
   const _maximumCenterarraySum = (i, mid, j) => {
     let sum_left = -Infinity
     let sum = 0
-    let x_left = mid
+    let x_left = i
     for (let x = mid; i <= x; x--) {
       sum += array[x]
       if (sum_left < sum) {
@@ -48,7 +43,7 @@ const maximumSubarraySum = (array) => {
 
     let sum_right = -Infinity
     sum = 0
-    let x_right = mid
+    let x_right = j
     for (let x = mid + 1; x <= j; x++) {
       sum += array[x]
       if (sum_right < sum) {
@@ -70,9 +65,9 @@ const maximumSubarraySum = (array) => {
     const right = _maximumSubarraySum(mid + 1, j)
     const center = _maximumCenterarraySum(i, mid, j)
 
-    if (left[2] < right[2] && center[2] < right[2]) {
+    if (left[2] <= right[2] && center[2] <= right[2]) {
       return right
-    } else if (right[2] < left[2] && center[2] < left[2]) {
+    } else if (right[2] <= left[2] && center[2] <= left[2]) {
       return left
     } else {
       return center
@@ -82,10 +77,7 @@ const maximumSubarraySum = (array) => {
   return _maximumSubarraySum(0, array.length - 1)
 }
 
-
-const array = Tableau.random(100, () => Nombre.random(-100, 100))
-// const array = [3,3,5,1,-19,34,23,23,-4]
-
-console.log(array, bruteForceMaximumSubarraySum(array), maximumSubarraySum(array))
-
-
+module.exports = {
+  bruteForce,
+  maximumSubarraySum,
+}
