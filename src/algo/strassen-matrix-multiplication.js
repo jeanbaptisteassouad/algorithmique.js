@@ -1,7 +1,5 @@
-const root_path = '.'
+const root_path = '..'
 
-const Nombre = require(root_path + '/util/nombre')
-const Tableau = require(root_path + '/util/tableau')
 const Matrix = require(root_path + '/util/matrix')
 
 
@@ -33,14 +31,14 @@ const matrixMultiplication = (ma, mb) => {
 }
 
 const strassenMatrixMultiplication = (ma, mb) => {
-  // n must always be even except for n === 1
+  // n must always be a power of two except for n === 1
   const n = Matrix.numberOfLines(ma)
   const ans = Matrix.emptySquare(n)
   if (n === 1) {
     Matrix.set(Matrix.get(0, 0, ma) * Matrix.get(0, 0, mb), 0, 0, ans)
     return ans
   } else {
-    // n is always even
+    // n is always a power of two
     const a11 = Matrix.createRef(0, n/2, 0, n/2, ma)
     const a12 = Matrix.createRef(0, n/2, n/2, n/2, ma)
     const a21 = Matrix.createRef(n/2, n/2, 0, n/2, ma)
@@ -85,11 +83,8 @@ const strassenMatrixMultiplication = (ma, mb) => {
   }
 }
 
-const ma = Matrix.randomSquare(4)
-const mb = Matrix.randomSquare(4)
-
-console.log(Matrix.getArray(ma), Matrix.getArray(mb))
-console.log(Matrix.getArray(matrixMultiplication(ma, mb)))
-console.log(Matrix.getArray(strassenMatrixMultiplication(ma, mb)))
-
+module.exports = {
+  matrixMultiplication,
+  strassenMatrixMultiplication
+}
 

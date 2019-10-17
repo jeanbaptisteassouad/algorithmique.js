@@ -10,7 +10,10 @@ const QuickCheck = require(root_path + '/util/quick-check')
 
 describe('maximumSubarraySum', () => {
   QuickCheck.loop('should find the maximum subarray sum', () => {
-    const array = Tableau.random(100, () => Math.floor(Nombre.random(-100, 100)))
+    const array = Tableau.random(
+      Math.floor(Nombre.random(1, 100)),
+      () => Math.floor(Nombre.random(-100, 100))
+    )
 
     const a = MaximumSubarraySum.maximumSubarraySum(array)
     const b = MaximumSubarraySum.bruteForce(array)
